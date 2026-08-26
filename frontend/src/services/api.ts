@@ -16,7 +16,9 @@ export interface UploadResponse {
 
 export const api = {
    async getProjects(): Promise<Project[]> {
-      const response = await fetch("/api/projects");
+      const response = await fetch(
+         "https://portfolio-management-dsgb.onrender.com/api/projects",
+      );
       if (!response.ok) {
          throw new Error(`Failed to fetch projects: ${response.statusText}`);
       }
