@@ -8,8 +8,17 @@ import { DeleteConfirmModal } from "./components/DeleteConfirmModal";
 import { ProjectPreviewModal } from "./components/ProjectPreviewModal";
 import { SupabaseStatusModal } from "./components/SupabaseStatusModal";
 import { ToastContainer, ToastMessage } from "./components/Toast";
+import AdminLogin from "./components/AdminLogin";
 
 export default function App() {
+   const [isLoggedIn, setIsLoggedIn] = useState(
+      localStorage.getItem("admin_logged_in") === "true",
+   );
+
+   if (!isLoggedIn) {
+      return <AdminLogin onLogin={() => setIsLoggedIn(true)} />;
+   }
+
    const [projects, setProjects] = useState<Project[]>([]);
    const [isLoading, setIsLoading] = useState<boolean>(true);
 
