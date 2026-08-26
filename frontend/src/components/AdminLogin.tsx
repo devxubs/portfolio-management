@@ -21,7 +21,7 @@ export default function AdminLogin() {
 
          localStorage.setItem("admin_code", adminCode);
 
-         window.location.href = "/";
+         window.location.reload();
          return;
       }
 
