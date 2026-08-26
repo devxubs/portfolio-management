@@ -13,7 +13,7 @@ const PORT = Number(process.env.PORT) || 5000;
 // CORS
 app.use(
    cors({
-      origin: process.env.FRONTEND_URL,
+      origin: "https://portfolio-management-wheat-six.vercel.app/",
       credentials: true,
    }),
 );
