@@ -180,9 +180,11 @@ export class ProjectController {
 
    async getSupabaseStatus(req: Request, res: Response): Promise<void> {
       try {
-         const supabaseUrl = process.env.SUPABASE_URL;
-         const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-         const anonKey = process.env.SUPABASE_ANON_KEY;
+         const supabaseUrl = "https://eizxfphmhlqpekwiivnx.supabase.co";
+         const serviceRoleKey =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpenhmcGhtaGxxcGVrd2lpdm54Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NzUxMTA3OSwiZXhwIjoyMTAzMDg3MDc5fQ.WYUz_5NaLhIveiOJiTscn9-wQH3n3LdejcrvvJ3SZPA";
+         const anonKey =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpenhmcGhtaGxxcGVrd2lpdm54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MTEwNzksImV4cCI6MjEwMzA4NzA3OX0.D-lgaSA_UdF1IEhBKIk--izRKgS8iddY9Q1moQd7rYU";
          const supabaseKey = serviceRoleKey || anonKey;
 
          if (!supabaseUrl || !supabaseKey) {
