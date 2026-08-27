@@ -14,11 +14,15 @@ export interface UploadResponse {
    error?: string;
 }
 
+const API_URL = (
+   import.meta as ImportMeta & {
+      env: { VITE_API_URL?: string };
+   }
+).env.VITE_API_URL;
+
 export const api = {
    async getProjects(): Promise<Project[]> {
-      const response = await fetch(
-         "https://portfolio-management-dsgb.onrender.com/api/projects",
-      );
+      const response = await fetch(`${API_URL}/api/projects`);
       if (!response.ok) {
          throw new Error(`Failed to fetch projects: ${response.statusText}`);
       }
@@ -30,7 +34,7 @@ export const api = {
    },
 
    async getProject(id: string): Promise<Project> {
-      const response = await fetch(`/api/projects/${id}`);
+      const response = await fetch(`${API_URL}/api/projects/${id}`);
       if (!response.ok) {
          throw new Error(`Failed to fetch project: ${response.statusText}`);
       }
@@ -42,7 +46,7 @@ export const api = {
    },
 
    async createProject(project: Partial<Project>): Promise<Project> {
-      const response = await fetch("/api/projects", {
+      const response = await fetch(`${API_URL}/api/projects`, {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
@@ -61,7 +65,7 @@ export const api = {
       id: string,
       project: Partial<Project>,
    ): Promise<Project> {
-      const response = await fetch(`/api/projects/${id}`, {
+      const response = await fetch(`${API_URL}/api/projects/${id}`, {
          method: "PUT",
          headers: {
             "Content-Type": "application/json",
@@ -77,7 +81,7 @@ export const api = {
    },
 
    async deleteProject(id: string): Promise<void> {
-      const response = await fetch(`/api/projects/${id}`, {
+      const response = await fetch(`${API_URL}/api/projects/${id}`, {
          method: "DELETE",
       });
 
@@ -93,7 +97,7 @@ export const api = {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await fetch("/api/upload", {
+      const response = await fetch(`${API_URL}/api/upload`, {
          method: "POST",
          body: formData,
       });
@@ -119,7 +123,7 @@ export const api = {
    async reorderProjects(
       items: { id: string; display_order: number }[],
    ): Promise<void> {
-      const response = await fetch("/api/projects/reorder", {
+      const response = await fetch(`${API_URL}/api/projects/reorder`, {
          method: "PUT",
          headers: {
             "Content-Type": "application/json",
