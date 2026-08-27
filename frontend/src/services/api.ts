@@ -13,7 +13,7 @@ export interface UploadResponse {
    image_path?: string;
    error?: string;
 }
-const API_URL = import.meta.env.FRONTEND_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const api = {
    async getProjects(): Promise<Project[]> {
